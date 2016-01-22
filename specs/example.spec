@@ -1,4 +1,4 @@
-# Specification Heading
+# Test various vowels
 
 Some description for the feature (aka Specification in the Gauge world)
 
