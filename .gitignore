@@ -2,4 +2,5 @@
 gauge_bin
 logs
 out
+reports
 *.log
