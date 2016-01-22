@@ -1,29 +1,21 @@
-Specification Heading
-=====================
+# Specification Heading
 
-This is an executable specification file. This file follows markdown syntax.
-Every heading in this file denotes a scenario. Every bulleted point denotes a step.
+Some description for the feature (aka Specification in the Gauge world)
 
-To execute this specification, run
-	gauge specs
-
-
+The following is a context step that is executed before every scenario
 * Vowels in English language are "aeiou".
 
-Vowel counts in single word
----------------------------
+## Vowel counts in single word
+
+This is a scenario
 
 tags: single word
 
 * The word "gauge" has "3" vowels.
 
-
-Vowel counts in multiple word
------------------------------
+## Vowel counts in multiple word
 
 This is the second scenario in this specification
-
-Here's a step that takes a table
 
 * Almost all words have vowels
      |Word  |Vowel Count|
