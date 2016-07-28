@@ -1,27 +1,13 @@
-# Test various vowels
+# Search in Google
 
-Some description for the feature (aka Specification in the Gauge world)
+This feature is to search in Google
 
-The following is a context step that is executed before every scenario
-* Vowels in English language are "aeiou".
+## Do a search
 
-## Vowel counts in single word
+This is a sample scenario
 
-This is a scenario
+tags: search
 
-tags: single word
-
-* The word "gauge" has "3" vowels.
-
-## Vowel counts in multiple word
-
-This is the second scenario in this specification
-
-* Almost all words have vowels
-     |Word  |Vowel Count|
-     |------|-----------|
-     |Gauge |3          |
-     |Mingle|2          |
-     |Snap  |1          |
-     |GoCD  |1          |
-     |Rhythm|0          |
+* I open the home page
+* I search for "test"
+* I should get the search results for "test"
