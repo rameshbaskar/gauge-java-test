@@ -6,3 +6,4 @@ reports
 *.log
 
 target
+.gauge

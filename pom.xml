@@ -47,6 +47,8 @@
                         <phase>test</phase>
                         <configuration>
                             <specsDir>specs</specsDir>
+                            <inParallel>true</inParallel>
+                            <nodes>4</nodes>
                         </configuration>
                         <goals>
                             <goal>execute</goal>
