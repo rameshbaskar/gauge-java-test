@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
     @FindBy(name = "q")
     private WebElement tbSearch;
 
-    @FindBy(name = "btnG")
+    @FindBy(name = "btnK")
     private WebElement btnSearch;
 
     public HomePage() {
@@ -22,10 +22,12 @@ public class HomePage extends BasePage {
     public void visit() {
         String url = System.getenv("APP_BASE_URL");
         visit(url);
+        waitForElementToBeVisible(tbSearch);
     }
 
     public void searchFor(String text) {
         tbSearch.sendKeys(text);
+        waitForElementToBeVisible(btnSearch);
         btnSearch.click();
     }
 

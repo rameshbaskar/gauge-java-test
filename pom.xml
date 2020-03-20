@@ -10,12 +10,12 @@
         <dependency>
             <groupId>com.thoughtworks.gauge</groupId>
             <artifactId>gauge-java</artifactId>
-            <version>0.2.1</version>
+            <version>0.7.4</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -48,14 +48,14 @@
             <plugin>
                 <groupId>com.thoughtworks.gauge.maven</groupId>
                 <artifactId>gauge-maven-plugin</artifactId>
-                <version>1.4.0</version>
+                <version>1.4.2</version>
                 <executions>
                     <execution>
                         <phase>test</phase>
                         <configuration>
                             <specsDir>specs</specsDir>
-                            <inParallel>false</inParallel>
-                            <nodes>1</nodes>
+                            <inParallel>true</inParallel>
+                            <nodes>4</nodes>
                         </configuration>
                         <goals>
                             <goal>execute</goal>
