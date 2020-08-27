@@ -2,42 +2,53 @@ package pages;
 
 import core.Driver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import java.util.concurrent.TimeUnit;
 
-/**
- * Created by Ramesh Baskarasubramanian on 6/10/15.
- */
 class BasePage {
-    static WebDriver driver = Driver.getDriver();
-    private static final long TIMEOUT = 60;
+
+    private final static int IMPLICIT_TIMEOUT = 5;
+    private final static int ELEMENT_TIMEOUT = 30;
+    static WebDriver driver;
+
+    BasePage() {
+        driver = Driver.getDriver();
+        driver.manage().timeouts().implicitlyWait(IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
+    }
 
     void visit(String url) {
         driver.get(url);
     }
 
-    void waitForElementToBeVisible(WebElement element) {
-        Wait<WebDriver> fluentWait = new FluentWait<>(driver)
-                .withTimeout(TIMEOUT, SECONDS)
-                .pollingEvery(2, SECONDS)
-                .ignoring(NoSuchElementException.class);
-
-        fluentWait.until(driver -> visibilityOf(element).apply(driver));
+    WebElement findElement(By locator) {
+        return (new WebDriverWait(driver, ELEMENT_TIMEOUT))
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    void waitForElementToBeVisible(By strategy) {
-        Wait<WebDriver> fluentWait = new FluentWait<>(driver)
-                .withTimeout(TIMEOUT, SECONDS)
-                .pollingEvery(2, SECONDS)
-                .ignoring(NoSuchElementException.class);
+    void waitForElementToAppear(WebElement element) {
+        new WebDriverWait(driver, ELEMENT_TIMEOUT)
+                .until(ExpectedConditions.visibilityOf(element));
+    }
 
-        fluentWait.until(driver -> presenceOfElementLocated(strategy).apply(driver));
+    void waitForElementToDisappear(WebElement element) {
+        new WebDriverWait(driver, ELEMENT_TIMEOUT)
+                .until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    void waitForElementToBeClickable(WebElement element) {
+        new WebDriverWait(driver, ELEMENT_TIMEOUT)
+                .until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    void sleep(long seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -22,12 +22,12 @@ public class HomePage extends BasePage {
     public void visit() {
         String url = System.getenv("APP_BASE_URL");
         visit(url);
-        waitForElementToBeVisible(tbSearch);
+        waitForElementToAppear(tbSearch);
     }
 
     public void searchFor(String text) {
         tbSearch.sendKeys(text);
-        waitForElementToBeVisible(btnSearch);
+        waitForElementToAppear(btnSearch);
         btnSearch.click();
     }
 

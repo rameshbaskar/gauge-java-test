@@ -3,32 +3,33 @@ package core;
 import com.thoughtworks.gauge.AfterSuite;
 import com.thoughtworks.gauge.BeforeSuite;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * Created by Ramesh Baskarasubramanian on 6/10/15.
  */
 public class Driver {
-    private static WebDriver webDriver = null;
+    private static WebDriver driver = null;
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
+    private static void closeDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
 
     @BeforeSuite
     public void beforeSuite() {
-        if (webDriver == null) {
-            System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER_PATH"));
-            webDriver = new ChromeDriver();
-            webDriver.manage().window().maximize();
+        if (driver == null) {
+            driver = DriverFactory.getDriver();
         }
     }
 
     @AfterSuite
     public void afterSuite() {
-        if (webDriver != null) {
-            webDriver.close();
-            webDriver = null;
-        }
-    }
-
-    public static WebDriver getDriver() {
-        return webDriver;
+        closeDriver();
     }
 }
